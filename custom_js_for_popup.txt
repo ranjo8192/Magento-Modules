@@ -1,0 +1,18 @@
+$("[data-ui-id='save-button'],[data-ui-id='save-and-continue-button']").on("click.myEvent", function(e) {
+		var $that = $(this);
+		$that.off('click.myEvent');
+		e.preventDefault();
+		e.stopImmediatePropagation();
+        var msg = $.mage.__('Are you sure you want to save this?');
+	
+        confirm({
+            'content': msg,
+            'actions': {
+                confirm: function () {
+					$that.trigger("click");
+                }
+            }
+        });
+
+        return false;
+    });
